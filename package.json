@@ -1,0 +1,33 @@
+{
+  "name": "node-solid",
+  "version": "0.1.0",
+  "description": "Social Linked Data Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicola/node-solid.git"
+  },
+  "keywords": [
+    "linked",
+    "data",
+    "rdf",
+    "ldp",
+    "rdf-ext",
+    "solid",
+    "social",
+    "semantic",
+    "web",
+    "linked",
+    "data",
+    "container"
+  ],
+  "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicola/node-solid/issues"
+  },
+  "homepage": "https://github.com/nicola/node-solid"
+}
