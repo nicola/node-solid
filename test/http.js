@@ -51,6 +51,7 @@ describe('HTTP APIs', function() {
       it('should have Access-Control-Allow-Origin as the req.Origin', function(done) {
           server.get('/')
               .set('Origin', 'http://example.com')
+              .set('Accept', 'text/turtle')
               .expect('Access-Control-Allow-Origin', 'http://example.com')
               .expect(200, done);
       });
