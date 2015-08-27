@@ -72,7 +72,7 @@ describe('solid params', function () {
     describe('not passed', function() {
       it('should fallback on .meta', function() {
         var ldp = solid();
-        assert.equal(ldp.locals.ldp.suffixMeta, '.meta');
+        assert.equal(ldp.locals.solid.suffixMeta, '.meta');
       });
     });
   });
@@ -81,49 +81,50 @@ describe('solid params', function () {
     describe('not passed', function() {
       it('should fallback on .acl', function() {
         var ldp = solid();
-        assert.equal(ldp.locals.ldp.suffixAcl, '.acl');
+        assert.equal(ldp.locals.solid.suffixAcl, '.acl');
       });
     });
   });
 
-  describe('mount', function () {
+  // TODO this should be in create-server
+  // describe('mount', function () {
 
-    describe('not passed', function () {
-      it('should fallback on /', function (done) {
-        var ldp = solid();
-        assert.equal(ldp.locals.ldp.mount, '/');
-        done();
-      });
+  //   describe('not passed', function () {
+  //     it('should fallback on /', function (done) {
+  //       var ldp = solid();
+  //       assert.equal(ldp.locals.solid.mount, '/');
+  //       done();
+  //     });
 
-    });
+  //   });
 
-    describe('passed', function() {
-      it ('should properly set the opts.mount', function (done) {
-        var ldp1 = solid({
-          mount: '/'
-        });
-        assert.equal(ldp1.locals.ldp.mount, '/');
+  //   describe('passed', function() {
+  //     it ('should properly set the opts.mount', function (done) {
+  //       var ldp1 = solid({
+  //         mount: '/'
+  //       });
+  //       assert.equal(ldp1.locals.solid.mount, '/');
 
-        var ldp2 = solid({
-          mount: '/test'
-        });
-        assert.equal(ldp2.locals.ldp.mount, '/test');
+  //       var ldp2 = solid({
+  //         mount: '/test'
+  //       });
+  //       assert.equal(ldp2.locals.solid.mount, '/test');
 
-        done();
-      });
-      it('should drop tha trailing /', function () {
-        var ldp1 = solid({
-          mount: '/test/'
-        });
-        assert.equal(ldp1.locals.ldp.mount, '/test');
+  //       done();
+  //     });
+  //     it('should drop tha trailing /', function () {
+  //       var ldp1 = solid({
+  //         mount: '/test/'
+  //       });
+  //       assert.equal(ldp1.locals.solid.mount, '/test');
 
-        var ldp2 = solid({
-          mount: '/test/test'
-        });
-        assert.equal(ldp1.locals.ldp.mount, '/test');
-      });
-    });
-  });
+  //       var ldp2 = solid({
+  //         mount: '/test/test'
+  //       });
+  //       assert.equal(ldp1.locals.solid.mount, '/test');
+  //     });
+  //   });
+  // });
 
   describe('root', function () {
     describe('not passed', function () {
@@ -131,7 +132,7 @@ describe('solid params', function () {
       var server = supertest(ldp);
       
       it ('should fallback on current working directory', function () {
-        assert.equal(ldp.locals.ldp.root, process.cwd() + '/');
+        assert.equal(ldp.locals.solid.root, process.cwd() + '/');
       });
 
       it ('should find resource in correct path', function(done) {
@@ -140,9 +141,10 @@ describe('solid params', function () {
           'sampleContainer/example.ttl');
 
         // This assums npm test is run from the folder that contains package.js
-        server.get('/test/resources/sampleContainer/example.ttl')
-          .expect('Link', /http:\/\/www.w3.org\/ns\/ldp#Resource/)
+        server.get('/test/resources/sampleContainer/example1.ttl')
+          .set('Accept', 'text/turtle')
           .expect(200)
+          .expect('Link', /http:\/\/www.w3.org\/ns\/ldp#Resource/)
           .end(function(err, res, body) {
             assert.equal(read('sampleContainer/example.ttl'), '<#current> <#temp> 123 .');
             rm('sampleContainer/example.ttl');
@@ -156,7 +158,7 @@ describe('solid params', function () {
       var server = supertest(ldp);
 
       it ('should fallback on current working directory', function () {
-        assert.equal(ldp.locals.ldp.root, './test/resources/');
+        assert.equal(ldp.locals.solid.root, './test/resources/');
       });
 
       it ('should find resource in correct path', function(done) {
@@ -166,6 +168,7 @@ describe('solid params', function () {
 
         // This assums npm test is run from the folder that contains package.js
         server.get('/sampleContainer/example.ttl')
+          .set('Accept', 'text/turtle')
           .expect('Link', /http:\/\/www.w3.org\/ns\/ldp#Resource/)
           .expect(200)
           .end(function(err, res, body) {
