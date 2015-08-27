@@ -148,10 +148,7 @@ describe('HTTP APIs', function() {
             .set('Accept', 'text/turtle')
             .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#Resource>; rel="type"/)
             .expect(200)
-            .end(function(err, res) {
-              console.log(res.header)
-              done(err)
-            })
+            .end(done);
       });
 
       it.skip('should have set acl and describedBy Links for resource', function(done) {
