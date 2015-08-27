@@ -143,12 +143,17 @@ describe('HTTP APIs', function() {
               .expect(200, done);
       });
 
-      it.skip('should have set Link as resource', function(done) {
+      it('should have set Link as resource', function(done) {
         server.get('/sampleContainer/example1.ttl')
             .set('Accept', 'text/turtle')
             .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#Resource>; rel="type"/)
-            .expect(200, done);
+            .expect(200)
+            .end(function(err, res) {
+              console.log(res.header)
+              done(err)
+            })
       });
+
       it.skip('should have set acl and describedBy Links for resource', function(done) {
         server.get('/sampleContainer/example1.ttl')
             .set('Accept', 'text/turtle')
@@ -157,19 +162,20 @@ describe('HTTP APIs', function() {
             .end(done);
       });
 
-      it.skip('should have set Link as Container/BasicContainer', function(done) {
+      it('should have set Link as Container/BasicContainer', function(done) {
         server.head('/sampleContainer/')
             .set('Accept', 'text/turtle')
             .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#BasicContainer>; rel="type"/)
             .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#Container>; rel="type"/)
-            .expect(200, done);
+            .expect(200)
+            .end(done);
       });
       it('should return 404 for non-existent resource', function(done) {
           server.get('/invalidfile.foo')
               .set('Accept', 'text/turtle')
               .expect(404, done);
       });
-      it.skip('should return basic container link for directories', function(done) {
+      it('should return basic container link for directories', function(done) {
           server.get('/')
               .set('Accept', 'text/turtle')
               .expect('Link', /http:\/\/www.w3.org\/ns\/ldp#BasicContainer/)
@@ -179,12 +185,6 @@ describe('HTTP APIs', function() {
           server.get('/hello.html')
               .set('Accept', 'text/turtle')
               .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#Resource>; rel="type"/)
-              .expect(200, done);
-      });
-      it.skip('should have glob support', function(done) {
-          server.get('/sampleContainer/example*')
-              .set('Accept', 'text/turtle')
-              .expect('content-type', /text\/turtle/)
               .expect(200, done);
       });
 
@@ -213,7 +213,7 @@ describe('HTTP APIs', function() {
               .expect(200, done);
       });
 
-      it.skip('should have set Link as Resource', function(done) {
+      it('should have set Link as Resource', function(done) {
         server.head('/sampleContainer/example1.ttl')
             .set('Accept', 'text/turtle')
             .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#Resource>; rel="type"/)
@@ -227,7 +227,7 @@ describe('HTTP APIs', function() {
               .end(done);
       });
 
-      it.skip('should have set Link as Container/BasicContainer', function(done) {
+      it('should have set Link as Container/BasicContainer', function(done) {
         server.get('/sampleContainer/')
             .set('Accept', 'text/turtle')
             .expect('Link', /<http:\/\/www.w3.org\/ns\/ldp#BasicContainer>; rel="type"/)
