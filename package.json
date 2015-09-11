@@ -43,6 +43,7 @@
     "rdf-store-ldp": "^0.1.2",
     "rdf-store-server": "^0.1.0",
     "request": "^2.61.0",
+    "solid-acl": "^1.0.0",
     "string": "^3.3.1",
     "supertest": "^1.0.1"
   },
