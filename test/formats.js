@@ -40,7 +40,7 @@ describe('formats', function () {
     });
 
     describe('N-Quads', function() {
-        it('Should return N-Quads document is Accept is set to application/n-quads', function(done) {
+        it.skip('Should return N-Quads document is Accept is set to application/n-quads', function(done) {
             server.get('/sampleContainer/example1.ttl')
                 .set('accept', 'application/n-quads;q=0.9,text/turtle;q=0.8,text/plain;q=0.7,*/*;q=0.5')
                 .expect('content-type', /application\/n-quads/)
