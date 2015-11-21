@@ -11,9 +11,9 @@ describe('formats', function () {
     });
 
     var server = supertest(ldp);
-    describe.skip('HTML', function() {
+    describe('HTML', function() {
         it('Should return HTML containing "Hello, World!" if Accept is set to text/html', function(done) {
-            server.get('/hello.html')
+            server.get('/sampleContainer/hello.html')
                 .set('accept', 'application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5')
                 .expect('Content-type', /text\/html/)
                 .expect(/Hello, world!/)
@@ -39,7 +39,7 @@ describe('formats', function () {
         });
     });
 
-    describe.skip('N-Quads', function() {
+    describe('N-Quads', function() {
         it('Should return N-Quads document is Accept is set to application/n-quads', function(done) {
             server.get('/sampleContainer/example1.ttl')
                 .set('accept', 'application/n-quads;q=0.9,text/turtle;q=0.8,text/plain;q=0.7,*/*;q=0.5')
@@ -48,7 +48,7 @@ describe('formats', function () {
         });
     });
 
-    describe.skip('n3', function() {
+    describe('n3', function() {
         it('Should return turtle document if Accept is set to text/n3', function(done) {
             server.get('/sampleContainer/example1.ttl')
                 .set('accept', 'text/n3;q=0.9,text/turtle;q=0.8,text/plain;q=0.7,*/*;q=0.5')
@@ -57,7 +57,7 @@ describe('formats', function () {
         });
     });
 
-    describe.skip('none', function() {
+    describe('none', function() {
         it('Should return turtle document if no Accept header is set', function(done) {
             server.get('/sampleContainer/example1.ttl')
                 .expect('content-type', /text\/turtle/)

@@ -1,5 +1,2 @@
-// Expose solid() and solid.createServer()
-var solid = require('./lib/create-app');
-solid.createServer = require('./lib/create-server');
-
-module.exports = solid;
+module.exports = require('./lib/create-app')
+module.exports.createServer = require('./lib/create-server')
