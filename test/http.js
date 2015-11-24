@@ -283,7 +283,7 @@ describe('HTTP APIs', function () {
     })
   })
 
-  describe('POST API', function () {
+  describe.skip('POST API', function () {
     var postRequest1Body = fs.readFileSync(__dirname + '/resources/sampleContainer/put1.ttl', {
       'encoding': 'utf8'
     })
@@ -311,9 +311,9 @@ describe('HTTP APIs', function () {
       server.delete('/post-resource-1.ttl')
         .expect(200, done)
     })
-    var postResourceName;
+    var postResourceName
     var setResourceName = function (res) {
-      postResourceName = res.header.location;
+      postResourceName = res.header.location
     };
     it('Should create new resource without slug header', function (done) {
       server.post('/')
