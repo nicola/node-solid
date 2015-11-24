@@ -324,7 +324,7 @@ describe('HTTP APIs', function () {
         .end(done)
     })
     it('Should be able to delete newly created resource', function (done) {
-      server.delete('/' + postResourceName.replace(/https?\:\/\/127.0.0.1:[0-9]*\//, ''))
+      server.delete('/' + postResourceName.replace(/https?\:\/\/localhost(:[0-9]*)?\//, ''))
         .expect(200, done)
     })
     it('Should create container', function (done) {
