@@ -18,7 +18,7 @@ $ npm install node-solid
   - [x] [solid-ws](https://github.com/solid/solid-acl)
   - [ ] [solid-cli](https://github.com/solid/node-solid)
 - [ ] [webid-provider](https://github.com/solid/solid-acl)
-- [ ] [webid](https://github.com/linkeddata/node-webid)
+- [x] [webid](https://github.com/linkeddata/node-webid)
 - [ ] [solid-tests](https://github.com/solid/solid-acl)
 
 ## License
